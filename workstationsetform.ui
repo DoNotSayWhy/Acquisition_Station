@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WorkStationSetForm</class>
+ <widget class="QWidget" name="WorkStationSetForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1860</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>743</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="pushButton_w_set">
+     <property name="text">
+      <string>设置</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="pushButton_w_run_mode">
+     <property name="text">
+      <string>运行模式</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="pushButton_w_interface_set">
+     <property name="text">
+      <string>接口设置</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="4">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QWidget" name="page"/>
+     <widget class="QWidget" name="page_2"/>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>743</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="pushButton_w_save">
+     <property name="text">
+      <string>保存</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QPushButton" name="pushButton_w_reboot">
+     <property name="text">
+      <string>重启生效</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>pushButton_w_run_mode</tabstop>
+  <tabstop>pushButton_w_interface_set</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_w_set</sender>
+   <signal>clicked()</signal>
+   <receiver>WorkStationSetForm</receiver>
+   <slot>pushButtonWsSet()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>759</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>725</x>
+     <y>-20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_w_run_mode</sender>
+   <signal>clicked()</signal>
+   <receiver>WorkStationSetForm</receiver>
+   <slot>pushButtonWsRunMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>948</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>967</x>
+     <y>-38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_w_interface_set</sender>
+   <signal>clicked()</signal>
+   <receiver>WorkStationSetForm</receiver>
+   <slot>pushButtonWsInterface()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1136</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1152</x>
+     <y>-27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_w_save</sender>
+   <signal>clicked()</signal>
+   <receiver>WorkStationSetForm</receiver>
+   <slot>pushButtonWsSaveConfig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>859</x>
+     <y>534</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>861</x>
+     <y>891</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_w_reboot</sender>
+   <signal>clicked()</signal>
+   <receiver>WorkStationSetForm</receiver>
+   <slot>pushButtonWsReboot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1032</x>
+     <y>536</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1039</x>
+     <y>847</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButtonWsSet()</slot>
+  <slot>pushButtonWsRunMode()</slot>
+  <slot>pushButtonWsInterface()</slot>
+  <slot>pushButtonWsSaveConfig()</slot>
+  <slot>pushButtonWsReboot()</slot>
+ </slots>
+</ui>

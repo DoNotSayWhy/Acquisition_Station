@@ -1,0 +1,99 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/battery_full_lite.png</file>
+        <file>image/file_lite.png</file>
+        <file>image/circle.png</file>
+        <file>image/circle_lite.png</file>
+        <file>image/file_lite2.png</file>
+        <file>image/file_lite3.png</file>
+        <file>image/police_2.png</file>
+        <file>image/down-arrow.png</file>
+        <file>image/left-arrow.png</file>
+        <file>image/right-arrow.png</file>
+        <file>image/backdrop.png</file>
+        <file>image/butun1.png</file>
+        <file>image/butun2.png</file>
+        <file>image/collectionbackground.png</file>
+        <file>image/exit.png</file>
+        <file>image/help.png</file>
+        <file>image/policebadge.png</file>
+        <file>image/power.png</file>
+        <file>image/signin.png</file>
+        <file>image/staus.png</file>
+        <file>image/title.png</file>
+        <file>image/windownum.png</file>
+        <file>image/start.png</file>
+        <file>image/title2.png</file>
+        <file>image/log2.png</file>
+        <file>image/log.png</file>
+        <file>image/firststart.png</file>
+        <file>image/done.png</file>
+        <file>image/desktop.png</file>
+        <file>image/log3.png</file>
+        <file>image/asm182.png</file>
+        <file>image/asm184.png</file>
+        <file>image/asm3872.png</file>
+        <file>image/asm3873.png</file>
+        <file>image/asm3897.png</file>
+        <file>image/asm6152.png</file>
+        <file>image/asm6232.png</file>
+        <file>image/asm7997.png</file>
+        <file>image/asm8310.png</file>
+        <file>image/asm8311.png</file>
+        <file>image/asm8312.png</file>
+        <file>image/asm8313.png</file>
+        <file>image/asm8314.png</file>
+        <file>image/asm8315.png</file>
+        <file>image/asmback.png</file>
+        <file>image/Dataquery1.png</file>
+        <file>image/Dataquery3520.png</file>
+        <file>image/Dataquery3521.png</file>
+        <file>image/Dataquery3868.png</file>
+        <file>image/Dataquery3870.png</file>
+        <file>image/Dataquery3872.png</file>
+        <file>image/Dataquery3873.png</file>
+        <file>image/Dataquery4150.png</file>
+        <file>image/Dataquery7995.png</file>
+        <file>image/Dataquery7997.png</file>
+        <file>image/Dataquery8303.png</file>
+        <file>image/dm4124.png</file>
+        <file>image/dm4125.png</file>
+        <file>image/dm7997.png</file>
+        <file>image/dm8072.png</file>
+        <file>image/dm8204.png</file>
+        <file>image/dm8317.png</file>
+        <file>image/dm8318.png</file>
+        <file>image/eim6152.png</file>
+        <file>image/eim6232.png</file>
+        <file>image/eim8305.png</file>
+        <file>image/eim8306.png</file>
+        <file>image/eim8307.png</file>
+        <file>image/eim8308.png</file>
+        <file>image/eim8309.png</file>
+        <file>image/eimback.png</file>
+        <file>image/Individual center3870.png</file>
+        <file>image/Individual center3872.png</file>
+        <file>image/Individual center3873.png</file>
+        <file>image/Individual center4149.png</file>
+        <file>image/Individual center7995.png</file>
+        <file>image/Individual center8304.png</file>
+        <file>image/loginbutton1.png</file>
+        <file>image/loginbutton2.png</file>
+        <file>image/loginreveal.png</file>
+        <file>image/loginscreen.png</file>
+        <file>image/logintap.png</file>
+        <file>image/portmatching1.png</file>
+        <file>image/portmatching3868.png</file>
+        <file>image/portmatching8316.png</file>
+        <file>image/usermanagement4124.png</file>
+        <file>image/usermanagement4125.png</file>
+        <file>image/usermanagement8204.png</file>
+        <file>image/usermanagement8246.png</file>
+        <file>image/usermanagement8247.png</file>
+        <file>image/usermanagement8294.png</file>
+        <file>image/usermanagement8321.png</file>
+        <file>image/usermanagement8322.png</file>
+        <file>image/vosonic.jpg</file>
+        <file>image/drop_rl.png</file>
+    </qresource>
+</RCC>

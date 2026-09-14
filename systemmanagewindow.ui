@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SystemManageWindow</class>
+ <widget class="QMainWindow" name="SystemManageWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1923</width>
+    <height>1101</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-image: url(:/image/asm8315.png);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButtonBack">
+    <property name="geometry">
+     <rect>
+      <x>1759</x>
+      <y>25</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+font: 12pt &quot;Sans Serif&quot;;
+border: none;
+background-color: transparent;
+	color: rgb(255, 255, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>返回</string>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>1871</width>
+      <height>961</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QWidget" name="page"/>
+    <widget class="QWidget" name="page_2"/>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>30</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>系统管理</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonRecorderSet">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>50</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: white;  
+    border: none;
+    background-image: url(:/image/asm6232.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/asm6152.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>执法仪设置</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonWorkstationSet">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>50</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/asm6232.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/asm6152.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>采集站设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonDeptManage">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>50</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/asm6232.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/asm6152.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>部门管理</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonUserManage">
+    <property name="geometry">
+     <rect>
+      <x>1130</x>
+      <y>50</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/asm6232.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/asm6152.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>用户管理</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonLogQuery">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>50</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/asm6232.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/asm6152.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>日志查询</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1780</x>
+      <y>40</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+image: url(:/image/Individual center7995.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

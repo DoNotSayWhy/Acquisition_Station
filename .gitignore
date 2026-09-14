@@ -1,0 +1,48 @@
+# Qt/qmake build output
+/build/
+/build-*/
+/release/
+Makefile
+Makefile.*
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dll
+*.exe
+*.pdb
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*.qm
+
+# Packaged releases and generated runtime data
+*.tar.gz
+*.zip
+*.db
+*.db-*
+*.log
+core
+core.*
+Test.xlsx
+
+# Local configuration backups
+Config.ini.before*
+Param.ini.before*
+
+# IDE and operating-system metadata
+/.qtcreator/
+*.pro.user*
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+
+# Local inspection, backup, and credential helpers
+/.codex*/
+/.remote*/
+codex_ssh_askpass*
+.codex_ssh_askpass*
+*.restore.cpp
+*.remote

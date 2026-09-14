@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainForm</class>
+ <widget class="QWidget" name="MainForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>120</y>
+     <width>1980</width>
+     <height>883</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QListWidget{  
+    border:1px solid black; 
+	spacing: 20px;
+	background-color: transparent;
+}  
+
+QListWidget::item {
+    border: 2px solid black; 
+	border-image: url(:/image/collectionbackground.png);
+	margin: 2px;
+}</string>
+   </property>
+   <property name="flow">
+    <enum>QListView::LeftToRight</enum>
+   </property>
+   <property name="isWrapping" stdset="0">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_searchfiles">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>30</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/butun1.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/butun2.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>数据查询</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_setup">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>30</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/butun1.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/butun2.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>系统设置</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_help">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>1020</y>
+     <width>101</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 11pt &quot;Sans Serif&quot;;
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>帮助</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_exit">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>1020</y>
+     <width>101</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 11pt &quot;Sans Serif&quot;;
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+/* 添加 border: none; */
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_signin">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>1020</y>
+     <width>101</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 9pt &quot;Sans Serif&quot;;
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+/* 添加 border: none; */
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>软件注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>0</y>
+     <width>191</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>235</x>
+     <y>20</y>
+     <width>571</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="networklabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>1020</y>
+     <width>261</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/image/staus.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>1030</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;运行模式&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>1030</y>
+     <width>54</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#ffffff;&quot;&gt;单机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>1300</x>
+     <y>1030</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="versionlabel">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;系统版本：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="versiontextlabel">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;v1.0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>1520</x>
+     <y>1030</y>
+     <width>391</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="storelabel">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: rgb(0, 0, 0);
+	font:18px;
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;存储空间:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_disksize">
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	
+	color: rgb(255, 255, 255);
+	font:18px;
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>970</x>
+     <y>1017</y>
+     <width>81</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/image/log2.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_PersonCenter">
+   <property name="geometry">
+    <rect>
+     <x>1430</x>
+     <y>30</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/butun1.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/butun2.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>个人中心</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_unlock">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>1020</y>
+     <width>101</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 11pt &quot;Sans Serif&quot;;
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+/* 添加 border: none; */
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>解锁</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_update">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>1020</y>
+     <width>101</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 8pt &quot;Sans Serif&quot;;
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>更新</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_Activate">
+   <property name="geometry">
+    <rect>
+     <x>1260</x>
+     <y>30</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/butun1.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/butun2.png);
+ border: none;
+color: rgb(85, 255, 255);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>已激活</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,8 @@
+﻿[Desktop Entry]
+Name=HSActivetion Portrait
+Comment=Acquisition Station (1080x1920 Portrait)
+Type=Application
+Terminal=true
+Exec=sh -c 'cd "$(dirname "$1")" && exec ./Acquisition_Station' launcher %k
+Icon=deskimg.png
+Categories=Utility;

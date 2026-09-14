@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WsPairDeviceForm</class>
+ <widget class="QWidget" name="WsPairDeviceForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QPushButton" name="pushButtonBack">
+   <property name="geometry">
+    <rect>
+     <x>1669</x>
+     <y>30</y>
+     <width>181</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;   
+    border: none;
+    background-image: url(:/image/Dataquery3870.png);
+}
+QPushButton:pressed{
+border-image: url(:/image/Dataquery4150.png);
+ border: none;
+color: rgb(85, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>150</y>
+     <width>1921</width>
+     <height>881</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QListWidget{  
+    margin: auto; 
+	spacing: 20px;
+	background-color: transparent;
+}  
+
+QListWidget::item {
+    height: 266px;
+    width: 440px;
+    border: 1px solid rgba(0,144,255,0.6);
+margin-left:10px;
+margin-top:10px;
+}</string>
+   </property>
+   <property name="flow">
+    <enum>QListView::LeftToRight</enum>
+   </property>
+   <property name="isWrapping" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="viewMode">
+    <enum>QListView::ListMode</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>110</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>USB信息:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelUsbPortNum">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 255);</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelPairDeviceTitle">
+   <property name="geometry">
+    <rect>
+     <x>910</x>
+     <y>20</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>端口匹配</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButtonBack</sender>
+   <signal>clicked()</signal>
+   <receiver>WsPairDeviceForm</receiver>
+   <slot>pushButtonClickBack()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1795</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1804</x>
+     <y>-9</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButtonClickBack()</slot>
+ </slots>
+</ui>
