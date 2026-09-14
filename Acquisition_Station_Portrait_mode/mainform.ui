@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>MainForm</class>
+ <widget class="QWidget" name="MainForm">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>1080</width><height>1920</height></rect></property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true" />
+  </property>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect><x>30</x><y>120</y><width>1020</width><height>1605</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QListWidget { border: none; spacing: 15px; background: transparent; outline: none; }
+QListWidget::item { background: rgba(3, 37, 70, 185); border: 1px solid rgba(0, 177, 235, 210); border-radius: 8px; margin: 0px; }
+QListWidget::item:selected { background: rgba(3, 37, 70, 185); }
+QScrollBar:vertical, QScrollBar:horizontal { width: 0px; height: 0px; background: transparent; }</string></property>
+   <property name="flow">
+    <enum>QListView::LeftToRight</enum>
+   </property>
+   <property name="isWrapping" stdset="0">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_searchfiles">
+   <property name="geometry">
+    <rect><x>402</x><y>28</y><width>132</width><height>52</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;
+    font: 12pt "Sans Serif";
+    background: rgba(5, 67, 125, 225);
+    border: 1px solid rgb(0, 180, 240);
+    border-radius: 3px;
+}
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); color: white; }
+</string>
+   </property>
+   <property name="text">
+    <string>数据查询</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_setup">
+   <property name="geometry">
+    <rect><x>544</x><y>28</y><width>132</width><height>52</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;
+    font: 12pt "Sans Serif";
+    background: rgba(5, 67, 125, 225);
+    border: 1px solid rgb(0, 180, 240);
+    border-radius: 3px;
+}
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); color: white; }
+</string>
+   </property>
+   <property name="text">
+    <string>系统设置</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_help">
+   <property name="geometry">
+    <rect><x>285</x><y>1852</y><width>120</width><height>48</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { color: white; font: 12pt "Sans Serif"; background: rgba(5, 67, 125, 225); border: 1px solid rgb(0, 180, 240); border-radius: 5px; }
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); }</string>
+   </property>
+   <property name="text">
+    <string>帮助</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_exit">
+   <property name="geometry">
+    <rect><x>420</x><y>1852</y><width>120</width><height>48</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { color: white; font: 12pt "Sans Serif"; background: rgba(5, 67, 125, 225); border: 1px solid rgb(0, 180, 240); border-radius: 5px; }
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); }</string>
+   </property>
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_signin">
+   <property name="geometry">
+    <rect><x>650</x><y>1818</y><width>105</width><height>42</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 9pt "Sans Serif";
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+/* 添加 border: none; */
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>软件注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect><x>0</x><y>0</y><width>0</width><height>0</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true" />
+   </property>
+   <property name="text">
+    <string />
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect><x>26</x><y>15</y><width>365</width><height>70</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">color: white; font: bold 21pt "Sans Serif";</string>
+   </property>
+   <property name="text">
+    <string />
+   </property>
+  </widget>
+  <widget class="QLabel" name="networklabel">
+   <property name="geometry">
+    <rect><x>30</x><y>1852</y><width>230</width><height>48</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">background: rgba(4, 45, 83, 230); border: 1px solid rgb(0, 171, 235); border-radius: 6px;</string>
+   </property>
+   <property name="text">
+    <string />
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect><x>50</x><y>1865</y><width>105</width><height>24</height></rect></property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; color:#ffffff;"&gt;运行模式&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect><x>177</x><y>1865</y><width>65</width><height>24</height></rect></property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:11pt; color:#ffffff;"&gt;单机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect><x>710</x><y>1850</y><width>330</width><height>24</height></rect></property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="leftMargin"><number>0</number></property>
+    <property name="topMargin"><number>0</number></property>
+    <property name="rightMargin"><number>0</number></property>
+    <property name="bottomMargin"><number>0</number></property>
+    <item>
+     <widget class="QLabel" name="versionlabel">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; color:#ffffff;"&gt;系统版本：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="versiontextlabel">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:12pt; color:#ffffff;"&gt;v1.0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect><x>710</x><y>1876</y><width>330</width><height>24</height></rect></property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <property name="leftMargin"><number>0</number></property>
+    <property name="topMargin"><number>0</number></property>
+    <property name="rightMargin"><number>0</number></property>
+    <property name="bottomMargin"><number>0</number></property>
+    <item>
+     <widget class="QLabel" name="storelabel">
+      <property name="styleSheet">
+       <string notr="true">QLabel { color: white; font: 11pt "Sans Serif"; border: none; }</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" color:#ffffff;"&gt;存储空间:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_disksize">
+      <property name="styleSheet">
+       <string notr="true">QLabel { color: white; font: 11pt "Sans Serif"; border: none; }</string>
+      </property>
+      <property name="text">
+       <string />
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect><x>0</x><y>0</y><width>0</width><height>0</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/image/log2.png);</string>
+   </property>
+   <property name="text">
+    <string />
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_PersonCenter">
+   <property name="geometry">
+    <rect>
+     <x>1430</x>
+     <y>30</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;
+    font: 12pt "Sans Serif";
+    background: rgba(5, 67, 125, 225);
+    border: 1px solid rgb(0, 180, 240);
+    border-radius: 3px;
+}
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); color: white; }
+</string>
+   </property>
+   <property name="text">
+    <string>个人中心</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_unlock">
+   <property name="geometry">
+    <rect><x>555</x><y>1852</y><width>120</width><height>48</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { color: white; font: 12pt "Sans Serif"; background: rgba(5, 67, 125, 225); border: 1px solid rgb(0, 180, 240); border-radius: 5px; }
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); }</string>
+   </property>
+   <property name="text">
+    <string>解锁</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_update">
+   <property name="geometry">
+    <rect><x>770</x><y>1818</y><width>105</width><height>42</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 8pt "Sans Serif";
+background-image: url(:/image/help.png);
+color: white;   
+padding-left: 20px;
+border: none;
+}
+QPushButton:pressed{
+background-color:rgb(121, 121, 121);
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>更新</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_Activate">
+   <property name="geometry">
+    <rect><x>686</x><y>28</y><width>132</width><height>52</height></rect></property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: white;
+    font: 12pt "Sans Serif";
+    background: rgba(5, 67, 125, 225);
+    border: 1px solid rgb(0, 180, 240);
+    border-radius: 3px;
+}
+QPushButton:hover { background: rgba(0, 110, 190, 235); }
+QPushButton:pressed { background: rgba(0, 150, 220, 235); color: white; }</string>
+   </property>
+   <property name="text">
+    <string>已激活</string>
+   </property>
+  </widget>
+ </widget>
+ <resources />
+ <connections />
+</ui>

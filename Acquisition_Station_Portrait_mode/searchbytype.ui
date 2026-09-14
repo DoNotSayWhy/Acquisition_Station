@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchByType</class>
+ <widget class="QDialog" name="SearchByType">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1080</width>
+    <height>1920</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+background-image: url(:/image/Dataquery8303.png);
+}</string>
+  </property>
+  <widget class="QDateEdit" name="dateEditstart">
+   <property name="geometry">
+    <rect>
+     <x>511</x>
+     <y>254</y>
+     <width>84</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2024</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelequipnumber">
+   <property name="geometry">
+    <rect>
+     <x>596</x>
+     <y>161</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>设备编号</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>613</x>
+     <y>241</y>
+     <width>15</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLable{
+font: 20pt &quot;Sans Serif&quot;;
+}</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;一&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="significancecomboBox">
+   <property name="geometry">
+    <rect>
+     <x>67</x>
+     <y>254</y>
+     <width>53</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <item>
+    <property name="text">
+     <string>全部</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>标注不重要</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>标注重要</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="labelfiletype">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>161</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>文件类型</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEditend">
+   <property name="geometry">
+    <rect>
+     <x>635</x>
+     <y>254</y>
+     <width>84</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonsearch">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>搜索</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="filetypecomboBox">
+   <property name="geometry">
+    <rect>
+     <x>66</x>
+     <y>172</y>
+     <width>53</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <item>
+    <property name="text">
+     <string>全部</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>视频</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>音频</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>图片</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>文本日志</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>其他</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>241</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>上传时间</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>462</y>
+     <width>1080</width>
+     <height>1404</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+	background: rgba(255, 255, 255, 1);  
+ 	border:none;
+}
+QHeaderView
+{
+    background:transparent;  
+	border:none;
+}
+QHeaderView::section 
+{
+    font-size:18px; 
+    font-family:&quot;Microsoft YaHei&quot;; 
+    color:#FFFFFF;  
+    background:#5B9BD5;  
+    border:none; 
+    min-height:50px; 
+    max-height:50px;        
+    margin-left:1.5px;   
+    padding-left:0px;  
+}
+QTableWidget{
+
+	border:none;
+}
+QTableWidget::item {
+      text-align: center;
+    }
+</string>
+   </property>
+   <column>
+    <property name="text">
+     <string>文件类型</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>人员编号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>设备编号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>姓名</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>拍摄时间</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>上传时间</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>播放</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>标注</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>修改文件名</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>重要文件</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>备注</string>
+    </property>
+    <property name="background">
+     <color>
+      <red>255</red>
+      <green>255</green>
+      <blue>255</blue>
+     </color>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>备注内容</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>全选/取消</string>
+    </property>
+    <property name="background">
+     <color>
+      <red>255</red>
+      <green>255</green>
+      <blue>255</blue>
+     </color>
+    </property>
+   </column>
+  </widget>
+  <widget class="QLineEdit" name="lineEditrem">
+   <property name="geometry">
+    <rect>
+     <x>804</x>
+     <y>172</y>
+     <width>60</width>
+     <height>46</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditpernum">
+   <property name="geometry">
+    <rect>
+     <x>218</x>
+     <y>172</y>
+     <width>60</width>
+     <height>46</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditshebnum">
+   <property name="geometry">
+    <rect>
+     <x>658</x>
+     <y>172</y>
+     <width>60</width>
+     <height>46</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>742</x>
+     <y>161</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>文件备注</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelsignificance">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>241</y>
+     <width>43</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>重要性</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonclear">
+   <property name="geometry">
+    <rect>
+     <x>911</x>
+     <y>165</y>
+     <width>50</width>
+     <height>62</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:4px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>重置</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtondelete">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelpernumber">
+   <property name="geometry">
+    <rect>
+     <x>156</x>
+     <y>161</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>人员编号</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditpername">
+   <property name="geometry">
+    <rect>
+     <x>512</x>
+     <y>172</y>
+     <width>60</width>
+     <height>46</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>74</x>
+     <y>17</y>
+     <width>68</width>
+     <height>108</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLable{
+color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;数据查询&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_Export">
+   <property name="geometry">
+    <rect>
+     <x>427</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}
+QPushButton:pressed{
+background-color:#329632;
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>下载</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelpername">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>161</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>人员姓名</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_goback">
+   <property name="geometry">
+    <rect>
+     <x>984</x>
+     <y>17</y>
+     <width>68</width>
+     <height>106</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+font: 24pt &quot;Sans Serif&quot;;
+border: none;
+background-color: transparent;
+	color: rgb(255, 255, 255);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonImportant">
+   <property name="geometry">
+    <rect>
+     <x>292</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>标注重要</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_upload">
+   <property name="geometry">
+    <rect>
+     <x>225</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}
+QPushButton:pressed{
+background-color:#329632;
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>上传</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxNum">
+   <property name="geometry">
+    <rect>
+     <x>366</x>
+     <y>170</y>
+     <width>62</width>
+     <height>55</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelNum">
+   <property name="geometry">
+    <rect>
+     <x>299</x>
+     <y>160</y>
+     <width>62</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>显示数量</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonConvert">
+   <property name="geometry">
+    <rect>
+     <x>155</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+	 background-color:#1a71c0 ;
+     border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}
+QPushButton:pressed{
+background-color:#329632;
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>格式转换</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>911</x>
+     <y>240</y>
+     <width>50</width>
+     <height>62</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+
+    background-color:#1a71c0 ;
+   border-radius:4px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}
+QPushButton:pressed{
+background-color:#329632;
+ border-style: inset;
+}</string>
+   </property>
+   <property name="text">
+    <string>检索</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>562</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>修改文件名</string>
+   </property>
+   <property name="autoExclusive">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>155</x>
+     <y>241</y>
+     <width>58</width>
+     <height>69</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {  
+    font-size: 26px; 
+}</string>
+   </property>
+   <property name="text">
+    <string>拍摄时间</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEditstart_create">
+   <property name="geometry">
+    <rect>
+     <x>223</x>
+     <y>254</y>
+     <width>84</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2024</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>318</x>
+     <y>240</y>
+     <width>15</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLable{
+font: 20pt &quot;Sans Serif&quot;;
+}</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;一&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEditend_create">
+   <property name="geometry">
+    <rect>
+     <x>343</x>
+     <y>254</y>
+     <width>84</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_priv">
+   <property name="geometry">
+    <rect>
+     <x>16</x>
+     <y>373</y>
+     <width>45</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">    background-color:#1a71c0 ;
+   border-radius:15px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>上一页</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_next">
+   <property name="geometry">
+    <rect>
+     <x>78</x>
+     <y>373</y>
+     <width>45</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">    background-color:#1a71c0 ;
+   border-radius:15px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>下一页</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>478</x>
+     <y>1884</y>
+     <width>68</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>495</x>
+     <y>373</y>
+     <width>56</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    background-color:#1a71c0 ;
+   border-radius:10px;
+	font: 12pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>标记上传</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

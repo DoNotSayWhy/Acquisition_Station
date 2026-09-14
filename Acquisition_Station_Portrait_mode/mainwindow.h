@@ -1,0 +1,176 @@
+﻿#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+#include<QDateTime>
+#include<mainform.h>
+#include<searchbytype.h>
+#include "libusb-1.0/libusb.h"
+#include<getusbinfo.h>
+#include<QMessageBox>
+#include<config.h>
+#include<mymqproducer.h>
+#include<mymqconsumer.h>
+#include<mysqllite.h>
+#include <QtNetwork>
+#include<QJsonArray>
+#include<QJsonDocument>
+#include<QJsonObject>
+#include<dasbuddy.h>
+#include<QUuid>
+#include<QMouseEvent>
+#include<loginform.h>
+#include<QTimer>
+#include<QVector>
+#include<QPointer>
+#include "networkutility.h"
+#include "audioplayer.h"
+
+#include <QtConcurrent/qtconcurrentrun.h>
+
+
+
+namespace Ui {
+class MainWindow;
+
+
+
+}
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+
+
+signals:
+    //void govideo(QString path,int search_type);
+    void govideo(QVariantMap videomap);
+    void connecthubtrue();
+    void connecthubfalse();
+    void sendConnectPortNumber(QList<int> list);
+    void toupdateSql(QVariantMap map);
+    void todeleteSql(QVariantMap map);
+    void toinsert_AcStation_log(QVariantMap map);
+    void toinsert_user_Log(QVariantMap map);
+    void updateDiskSize(double disksize,bool pingresult,double totalSize,double useSize);
+    void sendHeartbeatTONetWork(double freedisksize,double totaldisksize,const QString &stationIp);
+    void sendClientUpdateModelTONet(const QVariantMap &updateModel);
+    void deleteFilebySaveDay(int day);
+
+    void UploadFilebyTime(QString uploadDateTime);
+
+
+    void signalDsikMessage(int stat);
+
+    void signalStopDiskStat();
+
+
+private slots:
+    void gotoSearchForm(QString userid,QString roleId,bool videojur);
+    void gotoSearch_By_Files_Type(QString userid,QString roleId,bool videojur);
+    void goBackMainForm();
+    void goBackSearch(int search_type);
+
+
+
+    void doinsertActiveMq(QVariant dataVar);
+    void getConsumerMessage(QString str);
+
+    void toexitApp();
+    void readBashStandardOutputInfo();
+    void readBashStandardErrorInfo();
+    void doMqinsertLog(int type,QVariantMap map);
+    void tosendConfirmtoSerVer(int status,QString taskid);
+    void uploaddisksize();
+    void getnetworkanddiskmsg();
+    void goBackMainFormaddwidget();
+
+    void openbroswer();
+    void goBackSearchForm();
+//    void gotoSearchPersonCenter(int type,QString userid,QString roleId);
+
+
+    void recDsikMessage(int stat);
+    void recStopDiskStat();
+
+private:
+    Ui::MainWindow *ui;
+    int firstIndex;
+    MainForm *form;
+    SearchByType *searchbytype;
+
+    QThread t;
+    GetUsbInfo *getusb;
+    QList<STUUSBDevices> ADSDeviceslist;
+    void checkHubConnect();
+    QStringList usbhublist;
+    //ConnectADS *connectads;
+    QList<int> ZFYConnectNumber;
+
+    Config *getconfig;
+
+    MyMqProducer myproducer;
+
+    MyMqConsumer myconsumer;
+
+    MySqlLite *mysqlite;
+    QString MyHostIPV4Address;
+    void closeEvent(QCloseEvent *event);
+    void showEvent(QShowEvent *event);
+    NetworkUtility *net;
+
+    QTime uploadTime; // 上传时间
+private:
+    void initActiveMq();
+
+    QHostAddress getHostIPV4Address();
+    // Port count is configured by the workstation.  This must not be a
+    // fixed-size array: values above 40 previously wrote past its end during
+    // startup and caused an immediate crash.
+    QVector<DASBuddy *> dasbuddy;
+
+
+    QProcess *m_proces_bash;
+    void initProcess();
+    QDateTime systemstarttime;
+    QDateTime AcStation_starttime;
+    LoginForm *loginForm;
+    QTimer *timer_uploadDiskSize;
+    QTimer *timer_updateformlabel;
+    QTimer *updatetime;
+    QStorageInfo storage;
+    double freedisksize;
+    double totaldisksize;
+    bool pingOk(QString sIp);
+    QString pingip;
+
+    QThread *zfysetupthread;
+    int portNumMainWindow;
+    QLabel *timeLabel;
+    QLabel *dateTimeLabel;
+    QString getMediaMountPoints(QString mymountPoint);
+    QString getRemainingSpace(const QString &mountPoint);
+    bool isVoicePlayback = false;
+    QPointer<QWidget> diskWarningBanner;
+    int lastDiskWarningStat = 1;
+    QDateTime lastDiskWarningTime;
+
+
+    int offlineDropDisk();
+    QString configuredStoragePath() const;
+
+    void watchDisk();
+
+    QString getDiskNodeSpace(const QString &mountPoint,int node);
+
+    double sumDiskSize(QString);
+
+
+};
+
+#endif // MAINWINDOW_H

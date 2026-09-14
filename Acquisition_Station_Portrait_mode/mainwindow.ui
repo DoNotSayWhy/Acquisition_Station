@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>1080</width><height>1920</height></rect></property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true" />
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect><x>0</x><y>0</y><width>1080</width><height>1920</height></rect></property>
+    <property name="styleSheet">
+     <string notr="true">QStackedWidget {
+    background-image: url(:/image/backdrop.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault margin="11" spacing="6" />
+ <resources />
+ <connections />
+</ui>
