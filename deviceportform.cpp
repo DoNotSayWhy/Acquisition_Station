@@ -1,5 +1,6 @@
 #include "deviceportform.h"
 #include "ui_deviceportform.h"
+#include "uiprofile.h"
 #include <QFont>
 
 DevicePortForm::DevicePortForm(QWidget *parent) :
@@ -7,6 +8,7 @@ DevicePortForm::DevicePortForm(QWidget *parent) :
     ui(new Ui::DevicePortForm)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "deviceportform");
     currentPortNum = "";
     ui->gridLayout->setContentsMargins(16, 12, 16, 12);
     ui->gridLayout->setHorizontalSpacing(8);
@@ -43,7 +45,6 @@ void DevicePortForm::setPairStatus(int status){
 int DevicePortForm::getPairStatus(){
     return this->pairStatus;
 }
-
 
 
 

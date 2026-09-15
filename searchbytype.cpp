@@ -1,5 +1,6 @@
 ﻿#include "searchbytype.h"
 #include "ui_searchbytype.h"
+#include "uiprofile.h"
 #include <QCheckBox>
 #include<QDateTime>
 #include <QHBoxLayout>
@@ -15,6 +16,7 @@ SearchByType::SearchByType(QString userId,QString roleId,MySqlLite *sqltie,Netwo
     ui(new Ui::SearchByType)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "searchbytype");
 
     currPage = 1;
 
@@ -1439,6 +1441,5 @@ void SearchByType::onHeaderClicked(int column)
 
 
 }
-
 
 

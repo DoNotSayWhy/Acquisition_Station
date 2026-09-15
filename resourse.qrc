@@ -95,5 +95,20 @@
         <file>image/usermanagement8322.png</file>
         <file>image/vosonic.jpg</file>
         <file>image/drop_rl.png</file>
+        <file>ui_profiles/1280x1024/forms/dasbuddy.ui</file>
+        <file>ui_profiles/1280x1024/forms/deptmanagesetform.ui</file>
+        <file>ui_profiles/1280x1024/forms/deviceportform.ui</file>
+        <file>ui_profiles/1280x1024/forms/loggerqueryform.ui</file>
+        <file>ui_profiles/1280x1024/forms/mainform.ui</file>
+        <file>ui_profiles/1280x1024/forms/mainwindow.ui</file>
+        <file>ui_profiles/1280x1024/forms/recordersetting.ui</file>
+        <file>ui_profiles/1280x1024/forms/searchbytype.ui</file>
+        <file>ui_profiles/1280x1024/forms/systemmanagewindow.ui</file>
+        <file>ui_profiles/1280x1024/forms/usermanagesetform.ui</file>
+        <file>ui_profiles/1280x1024/forms/wspairdeviceform.ui</file>
+        <file>ui_profiles/1280x1024/image/Dataquery8303.png</file>
+        <file>ui_profiles/1280x1024/image/asm6232.png</file>
+        <file>ui_profiles/1280x1024/image/asm8315.png</file>
+        <file>ui_profiles/1280x1024/image/backdrop.png</file>
     </qresource>
 </RCC>

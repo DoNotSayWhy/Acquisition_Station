@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RecorderSettingForm</class>
+ <widget class="QWidget" name="RecorderSettingForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1220</width>
+    <height>905</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>760</y>
+     <width>54</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>人员编号</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditUserNo">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>760</y>
+     <width>113</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditDeviceNo">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>810</y>
+     <width>113</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>810</y>
+     <width>54</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>设备编号</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonModify">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>860</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确认修改</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonRead">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>860</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>读取</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>111</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>通用U盘</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_3">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>20</y>
+     <width>111</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>DCW</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButtonModify</sender>
+   <signal>clicked()</signal>
+   <receiver>RecorderSettingForm</receiver>
+   <slot>pushButtonClickConfirmModify()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>874</x>
+     <y>615</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>884</x>
+     <y>797</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonRead</sender>
+   <signal>clicked()</signal>
+   <receiver>RecorderSettingForm</receiver>
+   <slot>pushButtonClickReadParam()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>991</x>
+     <y>621</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1021</x>
+     <y>832</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButtonClickConfirmModify()</slot>
+  <slot>pushButtonClickReadParam()</slot>
+ </slots>
+</ui>

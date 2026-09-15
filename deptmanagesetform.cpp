@@ -1,5 +1,6 @@
 ﻿#include "deptmanagesetform.h"
 #include "ui_deptmanagesetform.h"
+#include "uiprofile.h"
 #include <qinputdialog.h>
 
 DeptManageSetForm::DeptManageSetForm(QString userid,QString roleId,MySqlLite *sqltie,QWidget *parent) :
@@ -7,6 +8,7 @@ DeptManageSetForm::DeptManageSetForm(QString userid,QString roleId,MySqlLite *sq
     ui(new Ui::DeptManageSetForm)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "deptmanagesetform");
     if(roleId.toInt() != 1){
     ui->addpushButton->setVisible(false);
     ui->addpushButton->setEnabled(false);

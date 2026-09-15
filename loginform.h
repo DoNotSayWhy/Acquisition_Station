@@ -65,7 +65,7 @@ private:
     int type = -1;
     QString login_UserName;
     QLineEdit *currentFocus = nullptr;
-    void ifopen_face_finger(bool);
+    void ifopen_face_finger(bool enableFace, bool enableFinger);
     FaceFormUtility *face = nullptr;
     MySqlLite *mysql = nullptr;
     FingerPrintForm *mFingerForm = nullptr;

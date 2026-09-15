@@ -160,6 +160,7 @@ private:
 
 
     int offlineDropDisk();
+    QString configuredStoragePath() const;
 
     void watchDisk();
 

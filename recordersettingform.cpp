@@ -1,5 +1,6 @@
 #include "recordersettingform.h"
 #include "ui_recordersetting.h"
+#include "uiprofile.h"
 #include <QCheckBox>
 #include <sstream>
 #include <QMessageBox>
@@ -10,6 +11,7 @@ RecorderSettingForm::RecorderSettingForm(QWidget *parent) :
     ui(new Ui::RecorderSettingForm)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "recordersetting");
 //    this->showMaximized();
 
 

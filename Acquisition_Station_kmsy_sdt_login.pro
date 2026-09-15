@@ -55,6 +55,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+OTHER_FILES += $$files($$PWD/ui_profiles/*, true)
+
 #include(QtUsb/src/usb/files.pri)
 SOURCES += \
         main.cpp \
@@ -67,6 +69,7 @@ SOURCES += \
     zfycontrol.cpp \
     mysqllite.cpp \
     config.cpp \
+    uiprofile.cpp \
     hotplugthread.cpp \
     mymqproducer.cpp \
     mymqconsumer.cpp \
@@ -112,6 +115,7 @@ HEADERS += \
     zfycontrol.h \
     mysqllite.h \
     config.h \
+    uiprofile.h \
     hotplugthread.h \
     mymqproducer.h \
     mymqconsumer.h \

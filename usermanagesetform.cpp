@@ -1,5 +1,6 @@
 ﻿#include "usermanagesetform.h"
 #include "ui_usermanagesetform.h"
+#include "uiprofile.h"
 #include <qcheckbox.h>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -19,6 +20,7 @@ UserManageSetForm::UserManageSetForm(QString userid, QString roleId, MySqlLite *
     ui(new Ui::UserManageSetForm)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "usermanagesetform");
     mysql = sqltie;
     mynet = net;
     this->userId = userid;

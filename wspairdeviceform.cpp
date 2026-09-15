@@ -1,5 +1,6 @@
 ﻿#include "wspairdeviceform.h"
 #include "ui_wspairdeviceform.h"
+#include "uiprofile.h"
 #include <QMessageBox>
 #include <QDebug>
 #include <QAbstractItemView>
@@ -13,6 +14,7 @@ WsPairDeviceForm::WsPairDeviceForm(int count,QWidget *parent) :
     deviceCount(count)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "wspairdeviceform");
 
     showFullScreen();
     checkConfigPortInfo();
@@ -221,7 +223,6 @@ void WsPairDeviceForm::pushButtonPairDevice(QString portNum){
     }
 
 }
-
 
 
 

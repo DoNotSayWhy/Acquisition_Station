@@ -1,5 +1,6 @@
 ﻿#include "systemmanagewindow.h"
 #include "ui_systemmanagewindow.h"
+#include "uiprofile.h"
 #include "recordersettingform.h"
 #include "workstationsetform.h"
 #include "deptmanagesetform.h"
@@ -18,6 +19,7 @@ SystemManageWindow::SystemManageWindow(QString userid,QString roleId,MySqlLite *
     userForm(nullptr)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "systemmanagewindow");
     this->getSystemIPV4Label = myipv4Address;
     mysql = sqltie;
     mynet = net;
@@ -111,7 +113,6 @@ void SystemManageWindow::pushButtonUserManage(){
 void SystemManageWindow::pushButtonLogQuery(){
     ui->stackedWidget->setCurrentIndex(INDEX_LOG_FORM);
 }
-
 
 
 

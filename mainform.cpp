@@ -1,5 +1,6 @@
 ﻿#include "mainform.h"
 #include "ui_mainform.h"
+#include "uiprofile.h"
 #include <QColor>
 #include "networkutility.h"
 #include "systemmanagewindow.h"
@@ -34,6 +35,7 @@ MainForm::MainForm(const QVector<DASBuddy *> &buddy, MySqlLite *sqltie,
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "mainform");
 
 
     isstandard = true;
@@ -70,9 +72,28 @@ MainForm::MainForm(const QVector<DASBuddy *> &buddy, MySqlLite *sqltie,
     // Calculate number of columns needed
      int columnCount = (portNum + itemsPerColumn - 1) / itemsPerColumn;
 
+    const bool compact1280Layout = UiProfile::isCompact1280();
+    if (compact1280Layout) {
+        // mainform.ui 中版本信息和存储信息的容器历史上使用了相同的
+        // objectName，1280 配置只能命中其中一个，导致存储信息仍停留在
+        // 1920 坐标并落到屏幕之外。这里通过标签的实际父容器分别定位。
+        QWidget *versionInfoWidget = ui->versionlabel->parentWidget();
+        QWidget *storageInfoWidget = ui->label_disksize->parentWidget();
+        if (versionInfoWidget) {
+            versionInfoWidget->setGeometry(710, 980, 171, 31);
+        }
+        if (storageInfoWidget) {
+            storageInfoWidget->setGeometry(890, 980, 390, 32);
+            storageInfoWidget->show();
+            storageInfoWidget->raise();
+        }
+
+        // Keep the original 1280x1024 main-screen list behavior.
+        ui->listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    }
 
     // Calculate item dimensions
-    int listWidgetWidth = ui->listWidget->width() - 60;
+    int listWidgetWidth = ui->listWidget->width() - (compact1280Layout ? 2 : 60);
     int listWidgetHeight = ui->listWidget->height() - 2;
 
     int itemWidth = listWidgetWidth / itemsPerColumn;
@@ -91,6 +112,10 @@ MainForm::MainForm(const QVector<DASBuddy *> &buddy, MySqlLite *sqltie,
 
 //        dasbuddy[i]->setPhotoText(QString::number(i+1));
         dasbuddy[i]->setPhotoText(text);
+        if (compact1280Layout) {
+            // Match the card size used by the original 1280x1024 version.
+            dasbuddy[i]->setFixedSize(QSize(itemWidth - 7, itemHeight - 7));
+        }
         QListWidgetItem *newItem = new QListWidgetItem();
 
         newItem->setSizeHint(QSize(itemWidth, itemHeight));
@@ -252,7 +277,7 @@ void MainForm::setlistWidget()
 void MainForm::on_pushButton_searchfiles_clicked()
 {
 
-    showLoginForm(loginForm->DataQuery);
+    showLoginForm(LoginForm::DataQuery);
 
     //
 //    loginForm = new LoginForm(0);
@@ -266,7 +291,7 @@ void MainForm::on_pushButton_searchfiles_clicked()
 void MainForm::on_pushButton_setup_clicked()
 {
 
-    showLoginForm(loginForm->SystemSettings);
+    showLoginForm(LoginForm::SystemSettings);
 //    loginForm = new LoginForm(1);
 //    //loginForm->setWindowFlag(Qt::)
 //    loginForm->setWindowModality(Qt::ApplicationModal);
@@ -323,7 +348,7 @@ void MainForm::checkjurstr(int type,const QString &username,const QString &roleI
      loginForm->hide();
      loginForm->deleteLater();
      loginForm = nullptr;
-     if(type == loginForm->DataQuery){
+     if(type == LoginForm::DataQuery){
      bool videojur =false;
 
         // emit gosearch(username,roleId,videojur);
@@ -331,7 +356,7 @@ void MainForm::checkjurstr(int type,const QString &username,const QString &roleI
          SearchByType *searchbytype = new SearchByType(username,roleId,mysql,mynet,videojur);
          searchbytype->show();
 
-     }else if(type == loginForm->SystemSettings){
+     }else if(type == LoginForm::SystemSettings){
 
          SystemManageWindow *sysWinManage = new SystemManageWindow(username,roleId,mysql,mynet,myipv4Address);
      //    sysWinManage->setSystemIPV4Label(myipv4Address);
@@ -1149,7 +1174,8 @@ void MainForm::checkUsbDrivesInfos() {
                 connect(thread, &QThread::started, task, &CopyTask::run);
 
 
-                mysql->moveToThread(thread);
+                // MySqlLite及其QSqlDatabase连接在主线程创建，不能跟随每个
+                // 拷贝任务反复移动线程；跨线程信号会以队列方式回到主线程执行。
 
                 NetworkUtility *myNet = new NetworkUtility();
                 // 连接信号和槽，使用 Qt::QueuedConnection

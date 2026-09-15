@@ -27,9 +27,28 @@ LoginForm::LoginForm(int type,MySqlLite *sqltie,QWidget *parent) :
     setWindowFlags(Qt::CustomizeWindowHint);
     // 是否开启指纹人脸
 #ifdef USE_FACE_FINGER
-    ifopen_face_finger(true);
+    bool loginMethodOk = false;
+    int loginMethod = Config::getInstance()->Get("wsConfig", "loginMethod")
+            .toInt(&loginMethodOk);
+    if (!loginMethodOk || loginMethod < 0 || loginMethod > 3) {
+        loginMethod = 3;
+    }
+    switch (loginMethod) {
+    case 0: // 密码登录
+        ifopen_face_finger(false, false);
+        break;
+    case 1: // 启用人脸，同时关闭指纹
+        ifopen_face_finger(true, false);
+        break;
+    case 2: // 启用指纹，同时关闭人脸
+        ifopen_face_finger(false, true);
+        break;
+    default: // 全部启用
+        ifopen_face_finger(true, true);
+        break;
+    }
 #else
-    ifopen_face_finger(false);
+    ifopen_face_finger(false, false);
 #endif
 
 //    setWindowFlags(Qt::WindowCloseButtonHint);
@@ -229,10 +248,12 @@ void LoginForm::LogSelectUserNoSuc(const QString &username, const QString &roleI
     emit loginsuccessRoleId(type,username,roleId);
 }
 
-void LoginForm::ifopen_face_finger(bool isopen)
+void LoginForm::ifopen_face_finger(bool enableFace, bool enableFinger)
 {
-    ui->pushButtonfinger->setVisible(isopen);  // 隐藏按钮
-    ui->pushButtonface->setVisible(isopen);
+    ui->pushButtonface->setVisible(enableFace);
+    ui->pushButtonface->setEnabled(enableFace);
+    ui->pushButtonfinger->setVisible(enableFinger);
+    ui->pushButtonfinger->setEnabled(enableFinger);
 }
 
 void LoginForm::on_pushButtonfinger_clicked()

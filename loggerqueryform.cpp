@@ -1,11 +1,13 @@
 #include "loggerqueryform.h"
 #include "ui_loggerqueryform.h"
+#include "uiprofile.h"
 
 LoggerQueryForm::LoggerQueryForm(QString userid,QString roleId,MySqlLite *sqltie,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LoggerQueryForm)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "loggerqueryform");
     mysql = sqltie;
     this->userId = userid;
     this->roleId = roleId;

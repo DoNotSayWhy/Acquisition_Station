@@ -2104,17 +2104,23 @@ void MySqlLite::sloMQSelectUserNo(const QString &username, const QString &passwo
 
     // qDebug() << "Executing query:" << queryStr;
 
-    sql_query->prepare(queryStr); // 准备查询
-    sql_query->bindValue(":username", username); // 始终绑定用户名
+    // 登录查询使用独立QSqlQuery，避免其他定时任务复用成员sql_query时
+    // 改写其prepare/bind状态并触发“Parameter count mismatch”。
+    QSqlQuery loginQuery(sqliteDatabase);
+    if (!loginQuery.prepare(queryStr)) {
+        qWarning() << "Failed to prepare login query:" << loginQuery.lastError().text();
+        return;
+    }
+    loginQuery.bindValue(":username", username);
 
     // 如果有密码，则绑定密码
     if (!password.isEmpty()) {
-        sql_query->bindValue(":password", password);
+        loginQuery.bindValue(":password", password);
     }
 
     try{
-        if (!sql_query->exec()) {
-            qDebug() << "Failed to execute query sloMQSelectUserNo:" << sql_query->lastError().text();
+        if (!loginQuery.exec()) {
+            qDebug() << "Failed to execute query sloMQSelectUserNo:" << loginQuery.lastError().text();
             return;
         }
 
@@ -2126,8 +2132,8 @@ void MySqlLite::sloMQSelectUserNo(const QString &username, const QString &passwo
     }
 
 
-    if (sql_query->next()) {
-        QString roleId = sql_query->value(0).toString(); // 获取第一列数据 (F_RoleId)
+    if (loginQuery.next()) {
+        QString roleId = loginQuery.value(0).toString(); // 获取第一列数据 (F_RoleId)
         // qDebug() << "Role ID: " << roleId;
 
 
@@ -2141,8 +2147,8 @@ void MySqlLite::sloMQSelectUserNo(const QString &username, const QString &passwo
     }
 
     // 检查执行查询后的错误
-    if (sql_query->lastError().isValid()) {
-        qDebug() << "Error occurred: " << sql_query->lastError().text();
+    if (loginQuery.lastError().isValid()) {
+        qDebug() << "Error occurred: " << loginQuery.lastError().text();
     }
 
 }

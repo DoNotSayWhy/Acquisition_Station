@@ -3,6 +3,7 @@
 #include "wspairdeviceform.h"
 #include "config.h"
 #include "hsglobal.h"
+#include "uiprofile.h"
 #include <QMessageBox>
 #include <opencv2/opencv.hpp>
 
@@ -94,7 +95,8 @@ void WsSetForm::comboBoxCurrentIndexChanged(int index){
 void WsSetForm::initForms(){
     QStringList reslutionList;
 
-    reslutionList.append("1920 * 1080");
+    reslutionList.append(UiProfile::resolution1920());
+    reslutionList.append(UiProfile::resolution1280());
 
 
     QStringList setPairDeviceList;
@@ -262,6 +264,20 @@ void WsSetForm::initForms(){
             ui->comboBoxVoice->setCurrentIndex(0);
         }
 
+        const QStringList loginMethods = QStringList()
+                << QStringLiteral("密码登录")
+                << QStringLiteral("启用人脸")
+                << QStringLiteral("启用指纹")
+                << QStringLiteral("全部启用");
+        ui->comboBoxLoginMethod->addItems(loginMethods);
+        bool loginMethodOk = false;
+        int loginMethod = pConfig->Get("wsConfig", "loginMethod").toInt(&loginMethodOk);
+        if (!loginMethodOk || loginMethod < 0 || loginMethod >= loginMethods.size()) {
+            // 旧配置没有此字段时保持原行为：密码、人脸、指纹都可登录。
+            loginMethod = 3;
+        }
+        ui->comboBoxLoginMethod->setCurrentIndex(loginMethod);
+
         QStringList Upload;
         Upload.append("手动上传");
         Upload.append("自动上传");
@@ -334,6 +350,8 @@ std::vector<int> WsSetForm::getAvailableCameras() {
 
 void WsSetForm::saveConfig(){
 
+    const QString oldResolution = UiProfile::currentResolution();
+
     hsGlobalMtx.lock();
 
     QString reslution = ui->comboBoxResolution->currentText();
@@ -354,6 +372,7 @@ void WsSetForm::saveConfig(){
     int pairDevice = ui->comboBoxPairDevice->currentIndex();
     int deleteFile = ui->comboBoxDeleteOrNot->currentIndex();
     int isVoicePlayback = ui->comboBoxVoice->currentIndex();
+    int loginMethod = ui->comboBoxLoginMethod->currentIndex();
     int uploadNum = ui->comboBoxUPLOAD->currentIndex();
     QTime UploadDateTime = ui->timeEditUPLOAD->time(); // 获取时间
 
@@ -378,6 +397,7 @@ void WsSetForm::saveConfig(){
     pConfig->Set("path","autodeletecopyfile",deleteFile==0?false:true);
     pConfig->Set("wsConfig","logo",selectedOption);
     pConfig->Set("wsConfig","isVoicePlayback",isVoicePlayback==0?false:true);
+    pConfig->Set("wsConfig", "loginMethod", loginMethod);
     pConfig->Set("wsConfig","Upload",uploadNum);
 
     pConfig->Set("wsConfig", "UploadDateTime", UploadDateTime.toString());
@@ -390,6 +410,10 @@ void WsSetForm::saveConfig(){
     pConfig->Sync();
     hsGlobalMtx.unlock();
 
-    QMessageBox::information(this, "提示", "设置保存成功！","完成");
+    const bool resolutionChanged = reslution != oldResolution;
+    const QString message = resolutionChanged
+            ? QStringLiteral("设置保存成功，界面分辨率将在重启软件后生效。")
+            : QStringLiteral("设置保存成功！");
+    QMessageBox::information(this, QStringLiteral("提示"), message, QStringLiteral("完成"));
 
 }

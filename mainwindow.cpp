@@ -1,5 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "uiprofile.h"
 #include <QGuiApplication>
 #include <QScreen>
 #include "networkutility.h"
@@ -9,6 +10,8 @@
 #include "disk.h"
 #include <QSoundEffect>
 #include <QString>
+#include <QFileInfo>
+#include <QDir>
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -21,12 +24,46 @@ bool is_mainwindow_exited = false;
 std::mutex hsGlobalMtx;
 std::mutex hsDbGlobalMtx;
 
+namespace {
+bool readFilesystemUsage(const QString &path, qint64 &totalBytes,
+                         qint64 &usedBytes, qint64 &availableBytes)
+{
+    QProcess process;
+    process.start("/bin/df", QStringList() << "-P" << "-B1" << path);
+    if (!process.waitForFinished(800) || process.exitStatus() != QProcess::NormalExit
+            || process.exitCode() != 0) {
+        process.kill();
+        return false;
+    }
+
+    const QStringList lines = QString::fromLocal8Bit(process.readAllStandardOutput())
+            .split('\n', QString::SkipEmptyParts);
+    if (lines.size() < 2) return false;
+    const QStringList columns = lines.last().simplified().split(' ', QString::SkipEmptyParts);
+    if (columns.size() < 6) return false;
+
+    bool totalOk = false;
+    bool usedOk = false;
+    bool availableOk = false;
+    const qint64 total = columns.at(1).toLongLong(&totalOk);
+    const qint64 used = columns.at(2).toLongLong(&usedOk);
+    const qint64 available = columns.at(3).toLongLong(&availableOk);
+    if (!totalOk || !usedOk || !availableOk || total <= 0 || used < 0 || available < 0) return false;
+
+    totalBytes = total;
+    usedBytes = used;
+    availableBytes = available;
+    return true;
+}
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    UiProfile::apply(this, "mainwindow");
     // 设置窗口无标题栏
     setWindowFlags(Qt::FramelessWindowHint);
 
@@ -52,7 +89,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // 创建 QVBoxLayout 用于垂直排列时间和日期
     QWidget *dateTimeWidget = new QWidget(this);
-    dateTimeWidget->setFixedSize(200, 90);
+    dateTimeWidget->setFixedSize(160, 80);
+    // 日期时间仅用于显示。即使1280布局下与按钮区域发生重叠
+    // 鼠标事件也应继续传递给下面的数据查询和系统设置按钮。
+    dateTimeWidget->setAttribute(Qt::WA_TransparentForMouseEvents);
     QVBoxLayout *vBoxLayout = new QVBoxLayout(dateTimeWidget);
     vBoxLayout->addWidget(dateTimeLabel, 0, Qt::AlignCenter);
     vBoxLayout->addWidget(timeLabel, 0, Qt::AlignCenter);
@@ -61,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent) :
     int screenWidth = QGuiApplication::primaryScreen()->geometry().width();
 
     // 设置时间、日期、星期标签位置偏移
-    dateTimeWidget->move(screenWidth - dateTimeLabel->width() - 300, 0);
+    dateTimeWidget->move(screenWidth - dateTimeLabel->width() - 50, 0);
 
     // 更新日期时间的定时器
     QTimer *dateTimeTimer = new QTimer(this);
@@ -80,21 +120,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initProcess();
 
 
-    QString saveDir =  Config::getInstance()->Get("wsConfig","saveDir").toString();
-
-    QString new_saveDir = getMediaMountPoints(saveDir);
-
-    if(!new_saveDir.isEmpty() && new_saveDir != saveDir){
-
-
-        hsGlobalMtx.lock();
-
-         Config::getInstance()->Set("wsConfig","saveDir",new_saveDir);
-        Config::getInstance()->Sync();
-
-        hsGlobalMtx.unlock();
-
-    }
+    // 保持设置中选择的存储盘，不在启动时自动切换到其他 /media 分区。
 
 
 
@@ -124,9 +150,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer_updateformlabel, SIGNAL(timeout()), this, SLOT(getnetworkanddiskmsg()));
     timer_updateformlabel->start(60000);
     //获取当前系统盘(Linux系统就是根目录)的磁盘情况
-    storage = QStorageInfo::root();
+    storage = QStorageInfo(configuredStoragePath());
     //copypath为执法仪文件拷贝到本地的路径copypath=/mnt/itventi/copyfile，需要注意结尾不含/
-    QString path =  Config::getInstance()->Get("wsConfig","dataPath").toString();
     //server为服务端MQ配置。ServerQueue为服务端MQ队列名，serverIp为服务端IP，用于定时发送ping命令判断网络状态，
     //serverManagerIp为后台管理Ip，serverMqIp以tcp://开头，为服务端Mq地址。
     pingip =  Config::getInstance()->Get("server","serverIp").toString();
@@ -134,7 +159,7 @@ MainWindow::MainWindow(QWidget *parent) :
     pingip = pingip.mid(pingip.indexOf("//")+2);
     pingip = pingip.mid(0,pingip.indexOf(":"));
 //    qDebug()<<"pingip"<<pingip;
-    storage.setPath(path);
+    storage.setPath(configuredStoragePath());
     //获取计算机根目录的总磁盘大小
     totaldisksize = QString::number(storage.bytesTotal()/1024.00/1024.00/1024.00,'f',2).toDouble();
     storage.refresh();  //获得最新磁盘信息
@@ -241,16 +266,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //#ifdef USE_EXTERN_DISK
 
-    connect(this,&MainWindow::signalDsikMessage,this,&MainWindow::recDsikMessage);
     connect(this,&MainWindow::signalStopDiskStat,this,&MainWindow::recStopDiskStat);
 
-    // 创建一个 QTimer 对象
+    // 检测很轻量，固定在主线程定时执行，避免后台无限线程操作界面或音频对象。
     QTimer * diskTimer = new QTimer(this);
-    QObject::connect(diskTimer, &QTimer::timeout, this,[=](){
-        QtConcurrent::run(this,&MainWindow::watchDisk);
+    connect(diskTimer, &QTimer::timeout, this, [this](){
+        recDsikMessage(offlineDropDisk());
     });
-
-    diskTimer->setSingleShot(true);
+    diskTimer->setInterval(20000);
     diskTimer->start(20000);
 
 
@@ -367,12 +390,7 @@ void MainWindow::recDsikMessage(int stat)
     lastDiskWarningStat = stat;
     lastDiskWarningTime = now;
 
-    QString diskPath = Config::getInstance()->Get("wsConfig", "saveDir")
-            .toString().trimmed();
-    if (diskPath.isEmpty()) {
-        diskPath = Config::getInstance()->Get("wsConfig", "dataPath")
-                .toString().trimmed();
-    }
+    const QString diskPath = configuredStoragePath();
     const QString message = stat == -1
             ? QString("存储盘不可用：%1，请检查挂载；软件继续运行。").arg(diskPath)
             : QString("存储盘空间不足：%1 剩余少于 10GB；软件继续运行。").arg(diskPath);
@@ -795,12 +813,17 @@ void MainWindow::tosendConfirmtoSerVer(int status, QString taskid)
 
 void MainWindow::uploaddisksize()
 {
-
-    //获得最新磁盘信息
+    storage.setPath(configuredStoragePath());
     storage.refresh();
-    //storage.by 磁盘可用容量
-    freedisksize = QString::number(storage.bytesAvailable()/1024.00/1024.00/1024.00,'f',2).toDouble();
-
+    qint64 totalBytes = 0;
+    qint64 usedBytes = 0;
+    qint64 availableBytes = 0;
+    if (readFilesystemUsage(configuredStoragePath(), totalBytes, usedBytes, availableBytes)) {
+        freedisksize = availableBytes / 1024.0 / 1024.0 / 1024.0;
+    } else {
+        freedisksize = storage.isValid() && storage.isReady()
+                ? storage.bytesAvailable() / 1024.0 / 1024.0 / 1024.0 : 0.0;
+    }
 
     QVariantMap map;
     QString struuid = QUuid::createUuid().toString().remove("{").remove("}");
@@ -813,20 +836,22 @@ void MainWindow::uploaddisksize()
 
 void MainWindow::getnetworkanddiskmsg()
 {
-
+    storage.setPath(configuredStoragePath());
     storage.refresh();
-    //storage.by
-    freedisksize = QString::number(storage.bytesAvailable()/1024.00/1024.00/1024.00,'f',2).toDouble();
-    //
-
-    DiskInfo disk_;
-    GetDiskInfo(&disk_);
-//    std::cout << "Total disk size: " << disk_.allItem.diskTotal/1024.0/1024.0 << " GB" << std::endl;
-//    std::cout << "use disk size: " << disk_.allItem.diskUse/1024.0/1024.0 << " GB" << std::endl;
-    //GB
-    double totalSize = disk_.allItem.diskTotal/1024.0/1024.0;
-    double useSize = disk_.allItem.diskUse/1024.0/1024.0;
-    double usePer = disk_.allItem.diskUsePer/1.0;
+    qint64 totalBytes = 0;
+    qint64 usedBytes = 0;
+    qint64 availableBytes = 0;
+    if (!readFilesystemUsage(configuredStoragePath(), totalBytes, usedBytes, availableBytes)) {
+        totalBytes = storage.isValid() && storage.isReady() ? storage.bytesTotal() : 0;
+        availableBytes = storage.isValid() && storage.isReady() ? storage.bytesAvailable() : 0;
+        usedBytes = storage.isValid() && storage.isReady()
+                ? qMax<qint64>(0, totalBytes - storage.bytesFree()) : 0;
+    }
+    freedisksize = availableBytes / 1024.0 / 1024.0 / 1024.0;
+    totaldisksize = totalBytes / 1024.0 / 1024.0 / 1024.0;
+    const double totalSize = totaldisksize;
+    const double useSize = usedBytes / 1024.0 / 1024.0 / 1024.0;
+    const double usePer = totalBytes > 0 ? usedBytes * 100.0 / totalBytes : 0.0;
 
 
    emit sendHeartbeatTONetWork(freedisksize,totaldisksize,pingip);
@@ -939,25 +964,9 @@ QString MainWindow::getMediaMountPoints(QString mymountPoint) {
             }
         }
     }
-    if(isVoicePlayback){
-        // Specify the path to your audio file
-        QString audioFilePath = "./mp3/error.mp3"; // Change this to your audio file path
-
-        // Create an instance of AudioPlayer
-        AudioPlayer *audioPlayer = new AudioPlayer(audioFilePath, true); // Set loop to true if you want looping
-
-        // Start the audio player thread
-        audioPlayer->start();
-
-        // Optionally, connect signals to handle completion or errors
-        QObject::connect(audioPlayer, &QThread::finished, [&]() {
-            qDebug() << "Audio playback finished.";
-            audioPlayer->deleteLater(); // Clean up the audio player
-//            audioPlayer->quit(); // Exit the application
-        });
-        qWarning() << "磁盘容量不足，无法使用任何挂载点。";
-
-    }
+    // 磁盘异常统一由 recDsikMessage() 在主线程显示非阻塞提示。
+    // 此处禁止创建提示音线程，避免音频文件缺失及悬空引用造成崩溃。
+    qWarning() << "磁盘容量不足，无法使用任何挂载点。";
     return QString(); // 返回空字符串
 }
 
@@ -1016,8 +1025,57 @@ double MainWindow::sumDiskSize(QString freeSpace)
 
 
 
-int  MainWindow::offlineDropDisk()
+QString MainWindow::configuredStoragePath() const
 {
+    const QString dataPath = Config::getInstance()->Get("wsConfig", "dataPath")
+            .toString().trimmed();
+    const QString saveDir = Config::getInstance()->Get("wsConfig", "saveDir")
+            .toString().trimmed();
+
+    if (!dataPath.isEmpty() && QFileInfo(dataPath).exists()) {
+        return QDir::cleanPath(dataPath);
+    }
+    if (!saveDir.isEmpty() && QFileInfo(saveDir).exists()) {
+        return QDir::cleanPath(saveDir);
+    }
+    if (!dataPath.isEmpty()) {
+        return QDir::cleanPath(dataPath);
+    }
+    if (!saveDir.isEmpty()) {
+        return QDir::cleanPath(saveDir);
+    }
+    return "/data";
+}
+
+int MainWindow::offlineDropDisk()
+{
+    const QString savePath = configuredStoragePath();
+    const QFileInfo pathInfo(savePath);
+    if (!pathInfo.exists()) {
+        qWarning() << "configured collection path is unavailable:" << savePath;
+        return -1;
+    }
+
+    QStorageInfo saveStorage(pathInfo.absoluteFilePath());
+    saveStorage.refresh();
+    const qint64 lowSpaceLimitBytes = 10LL * 1024 * 1024 * 1024;
+    qint64 totalBytes = 0;
+    qint64 usedBytes = 0;
+    qint64 availableBytes = 0;
+    const bool hasDfUsage =
+            readFilesystemUsage(savePath, totalBytes, usedBytes, availableBytes);
+    const int result = hasDfUsage
+            ? (availableBytes < lowSpaceLimitBytes ? 0 : 1)
+            : ((!saveStorage.isValid() || !saveStorage.isReady())
+               ? -1 : (saveStorage.bytesAvailable() < lowSpaceLimitBytes ? 0 : 1));
+    qDebug() << "disk check" << savePath
+             << "volume=" << saveStorage.rootPath()
+             << "available=" << (hasDfUsage ? availableBytes : saveStorage.bytesAvailable())
+             << "threshold=" << lowSpaceLimitBytes
+             << "result=" << result;
+    return result;
+
+#if 0
 
     QStringList mountPoints;
     // 创建 QProcess 对象
@@ -1135,6 +1193,7 @@ int  MainWindow::offlineDropDisk()
 
     qDebug() << "Mount Points in /media:";
     return _resStat;
+#endif
 
 }
 

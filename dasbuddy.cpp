@@ -8,6 +8,7 @@
 #include <QComboBox>
 #include <QTableWidget>
 #include "ui_dasbuddy.h" 
+#include "uiprofile.h"
 
 
 #define RETRY_MAX                     5
@@ -58,6 +59,7 @@ DASBuddy::DASBuddy(bool deletefile,QWidget *parent) : QWidget(parent) ,
 {
 
     ui->setupUi(this);
+    UiProfile::apply(this, "dasbuddy");
 
     initConnectSignalSlot();
     initProgressBarStyle();
@@ -1671,6 +1673,5 @@ void DASBuddy::on_pushButton_sdt_clicked()
     //dialog.show();
 
 }
-
 
 

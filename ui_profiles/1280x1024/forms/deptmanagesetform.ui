@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DeptManageSetForm</class>
+ <widget class="QWidget" name="DeptManageSetForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1250</width>
+    <height>905</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="addpushButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-image: url(:/image/asm3872.png);
+	font: 16pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+ }</string>
+     </property>
+     <property name="text">
+      <string>添加</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="updatepushButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-image: url(:/image/asm3872.png);
+	font: 16pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+ }</string>
+     </property>
+     <property name="text">
+      <string>编辑</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="deletepushButton">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-image: url(:/image/asm3872.png);
+	font: 16pt &quot;Sans Serif&quot;;
+	color: rgb(255, 255, 255);
+ }</string>
+     </property>
+     <property name="text">
+      <string>删除</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>1607</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QTreeWidget" name="deptreeWidget">
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

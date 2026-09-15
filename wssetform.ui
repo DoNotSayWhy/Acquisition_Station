@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="11" column="0">
+   <item row="12" column="0">
     <widget class="QLabel" name="labelVoice">
      <property name="text">
       <string>语音播放:</string>
@@ -54,7 +54,7 @@
      </property>
     </widget>
    </item>
-   <item row="11" column="1">
+   <item row="12" column="1">
     <widget class="QComboBox" name="comboBoxVoice"/>
    </item>
    <item row="2" column="0">
@@ -135,7 +135,7 @@
    <item row="4" column="1" colspan="2">
     <widget class="QLineEdit" name="lineEditSaveDir"/>
    </item>
-   <item row="10" column="0">
+   <item row="11" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer_3">
@@ -225,7 +225,7 @@
    <item row="2" column="1">
     <widget class="QSpinBox" name="spinBoxRowPortCount"/>
    </item>
-   <item row="9" column="0">
+   <item row="10" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string>版本号：</string>
@@ -235,8 +235,21 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
+   <item row="10" column="1">
     <widget class="QLineEdit" name="currversion"/>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="labelLoginMethod">
+     <property name="text">
+      <string>登录方式：</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QComboBox" name="comboBoxLoginMethod"/>
    </item>
   </layout>
  </widget>
